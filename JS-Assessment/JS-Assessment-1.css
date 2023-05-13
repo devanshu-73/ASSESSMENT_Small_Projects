@@ -1,0 +1,30 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------------ */
+
+section {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section > h1 {
+  font-size: xx-large;
+  margin-bottom: 1rem;
+}
+#booking {
+  padding: 1rem;
+  width: 30%;
+  height: 55vh; 
+  display: grid;
+  border: 0.2rem solid black;
+}
+#booking>div {
+ display: grid;
+ grid-template-columns: 50% 50%;
+}

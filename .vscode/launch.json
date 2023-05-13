@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/chauh/Desktop/TOPS_Practice/Assessment/OOP Concept",
-      "program": "c:/Users/chauh/Desktop/TOPS_Practice/Assessment/OOP Concept/build/Debug/outDebug",
+      "cwd": "c:/Users/chauh/Desktop/TOPS_Practice/ASSESSMENT",
+      "program": "c:/Users/chauh/Desktop/TOPS_Practice/ASSESSMENT/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
