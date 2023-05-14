@@ -29,6 +29,7 @@
       {
         "select-name": "off"
       }
-    ]
+    ],
+    "sri": "off"
   }
 }

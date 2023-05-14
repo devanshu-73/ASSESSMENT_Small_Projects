@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/JS-Assessment/JS-Assessment-1.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
   <title>JS-Assessment-1</title>
 </head>
 
@@ -19,7 +23,7 @@
         </div>
         <div>
           <select id="booking-type" onchange="showBookingOptions()">
-            <option value="">--Please select--</option>
+            <option value="" disabled selected>--Please select--</option>
             <option value="full-day">Full Day Booking</option>
             <option value="half-day">Half Day Booking</option>
             <option value="hourly">Hourly Booking</option>
@@ -43,7 +47,7 @@
         <div> <input type="number" id="num-people" placeholder="People Count" required> </div>
       </div>
       <div id="booking-options"></div><br>
-      <button type="submit">SUBMIT</button>
+     <button type="submit" >SUBMIT</button>
     </form>
   </section>
   <script src="/JS-Assessment/JS-Assessment-1.js"></script>
