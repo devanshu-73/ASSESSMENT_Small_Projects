@@ -20,8 +20,13 @@ CREATE TABLE product (
 
 -- Sample data insertion for testing
 INSERT INTO product (product_id, pro_name, pro_price, pro_code, company_code) VALUES
-(1, 'Keyboard', 300.00, 'K123', 'C1'),
-(2, 'Motherboard', 500.00, 'M456', 'C2'),
-(3, 'Monitor', 350.00, 'M789', 'C1'),
-(4, 'Speaker', 200.00, 'S012', 'C3');
-x`
+(101, 'Keyboard', 300.00, 'K123', 'C1'),
+(102, 'Motherboard', 500.00, 'M456', 'C2'),
+(103, 'Monitor', 350.00, 'M789', 'C1'),
+(104, 'Monitor', 350.00, 'M789', 'C1'),
+(105, 'Monitor', 350.00, 'M789', 'C1'),
+(106, 'Speaker', 200.00, 'S012', 'C3');
+(107, 'Speaker', 200.00, 'S012', 'C3');
+(108, 'Speaker', 200.00, 'S012', 'C3');
+(109, 'Speaker', 200.00, 'S012', 'C3');
+(110, 'Speaker', 200.00, 'S012', 'C3');
