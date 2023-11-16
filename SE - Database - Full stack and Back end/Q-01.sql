@@ -10,6 +10,8 @@
 
 -- ● Write the sql query to find the average total for all the product mention in the table 
 
+create database assignment;
+use assignment;
 CREATE TABLE product (
     product_id INT PRIMARY KEY,
     pro_name VARCHAR(255),
@@ -19,7 +21,7 @@ CREATE TABLE product (
 );
 
 -- Sample data insertion for testing
-INSERT INTO product (product_id, pro_name, pro_price, pro_code) VALUES
+insert into product (product_id, pro_name, pro_price, pro_code) values
 (101, 'Mother Board', 3200.00,15),
 (102, 'Key Board', 450.00,16),
 (103, 'Zip Drive', 250.00, 14),
