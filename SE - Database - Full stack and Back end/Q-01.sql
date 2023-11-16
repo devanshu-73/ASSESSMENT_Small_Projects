@@ -34,3 +34,29 @@ insert into product (product_id, pro_name, pro_price, pro_code) values
 (108, 'Printer', 2600.00, 13);
 (109, 'Refill Cartridge', 350.00, 13);
 (110, 'Mouse', 250.00, 12);
+
+
+-- Write SQL query to find the items whose prices are higher than or equal 250rs. Order the result by product price in descending, then product name in ascending. Return pro_name and pro_price.
+
+SELECT pro_name, pro_price
+FROM product
+WHERE pro_price >= 250
+ORDER BY pro_price DESC, pro_name ASC;
+
+-- Write a SQL query to find the cheapest item. Return pro_name and pro_price.
+
+SELECT pro_name, pro_price
+FROM product
+ORDER BY pro_price ASC
+LIMIT 1;
+
+-- Write the SQL query to calculate the average price of the items for each company. Return average price and company code.
+
+SELECT AVG(pro_price) AS average_price, company_code
+FROM product
+GROUP BY company_code;
+
+-- Write the SQL query to find the average total for all the products mentioned in the table.
+
+SELECT AVG(pro_price) AS average_total_price
+FROM product;
