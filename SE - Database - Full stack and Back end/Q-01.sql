@@ -19,14 +19,14 @@ CREATE TABLE product (
 );
 
 -- Sample data insertion for testing
-INSERT INTO product (product_id, pro_name, pro_price, pro_code, company_code) VALUES
-(101, 'Keyboard', 300.00, 'K123', 'C1'),
-(102, 'Motherboard', 500.00, 'M456', 'C2'),
-(103, 'Monitor', 350.00, 'M789', 'C1'),
-(104, 'Monitor', 350.00, 'M789', 'C1'),
-(105, 'Monitor', 350.00, 'M789', 'C1'),
-(106, 'Speaker', 200.00, 'S012', 'C3');
-(107, 'Speaker', 200.00, 'S012', 'C3');
-(108, 'Speaker', 200.00, 'S012', 'C3');
-(109, 'Speaker', 200.00, 'S012', 'C3');
-(110, 'Speaker', 200.00, 'S012', 'C3');
+INSERT INTO product (product_id, pro_name, pro_price, pro_code) VALUES
+(101, 'Mother Board', 3200.00,15),
+(102, 'Key Board', 450.00,16),
+(103, 'Zip Drive', 250.00, 14),
+(104, 'Speaker', 550.00,16 ),
+(105, 'Monitor', 5000.00, 11),
+(106, 'DVD Drive', 900.00, 12);
+(107, 'CD Drive', 800.00,12 );
+(108, 'Printer', 2600.00, 13);
+(109, 'Refill Cartridge', 350.00, 13);
+(110, 'Mouse', 250.00, 12);
