@@ -11,7 +11,9 @@
 -- ● Write the sql query to find the average total for all the product mention in the table 
 
 create database assignment;
+
 use assignment;
+
 CREATE TABLE product (
     product_id INT PRIMARY KEY,
     pro_name VARCHAR(255),
