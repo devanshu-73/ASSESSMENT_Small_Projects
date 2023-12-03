@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 // Accordion component
 const Accordion = ({ items }) => {
-  // State to track which accordion item is open
+  // State for which accordion item is open right now
   const [openIndex, setOpenIndex] = useState(null);
 
-  // Event handler to toggle accordion item visibility
+  // Event_handler to toggle accordion item visibility
   const handleAccordionClick = (index) => {
     // Toggle the index if it's already open, otherwise set it to the clicked index
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -13,7 +13,7 @@ const Accordion = ({ items }) => {
 
   return (
     <div>
-      {/* Map method through accordion items */}
+      {/* Map through accordion items */}
       {items.map((item, index) => (
         <div key={index}>
           {/* Accordion title */}

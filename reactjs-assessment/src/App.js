@@ -1,7 +1,6 @@
 import React from 'react';
 import Accordion from './Accordion';
 
-// Example usage
 const App = () => {
   const accordionItems = [
     { title: 'Section 1', body: 'Section 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae corporis perspiciatis tempora deserunt, omnis nulla saepe nemo minima voluptates magni' },
