@@ -1,4 +1,3 @@
-# (Business logic module)
 class QuizOperations:
     def __init__(self):
         self.quiz_data = {}
