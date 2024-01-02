@@ -1,12 +1,6 @@
 from quiz_operations import QuizOperations
 
 # Function to display the menu
-print("======   WELCOME TO TOPS QUIZ GAMING CHALLENGE   ======")
-print('''Select your role : 
-                 -> Quiz Master  (Press 1)
-                 -> Quiz Cracker (Press 2)''')
-role = int(input("Enter your role : "))
-
 def display_menu():
     print("\n===== Quiz Game Menu =====")
     print("1. Add Question")
@@ -35,41 +29,62 @@ def is_valid_integer(value):
 def is_valid_confirmation(value):
     return value.lower() in ['y', 'n']
 
+# Function to handle Quiz Master operations
+def quiz_master_operations():
+    question_id = get_user_input("Enter question ID: ", is_valid_integer)
+    question = input("Enter the question: ")
+    options = input("Enter options separated by commas: ").split(',')
+    correct_option = get_user_input("Enter correct option: ", lambda x: x in options)
+
+    quiz.add_question(question_id, question, options, correct_option)
+    print("Question added successfully!")
+
+# Function to handle Quiz Cracker operations
+def quiz_cracker_operations():
+    quiz.view_questions()
+    # Add Quiz Cracker logic here
+
 # Main program
 if __name__ == "__main__":
+    print("======   WELCOME TO TOPS QUIZ GAMING CHALLENGE   ======")
+    print('''Select your role : 
+                 -> Quiz Master  (Press 1)
+                 -> Quiz Cracker (Press 2)''')
+
+    role = get_user_input("Enter your role: ", lambda x: x in ['1', '2'])
+
     quiz = QuizOperations()
 
-    while True:
-        display_menu()
-        choice = get_user_input("Enter your choice: ", is_valid_integer)
+    if role == '1':
+        while True:
+            display_menu()
+            choice = get_user_input("Enter your choice: ", is_valid_integer)
 
-        if choice == '1':
-            question_id = get_user_input("Enter question ID: ", is_valid_integer)
-            question = input("Enter the question: ")
-            options = input("Enter options separated by commas: ").split(',')
-            correct_option = get_user_input("Enter correct option: ", lambda x: x in options)
+            if choice == '1':
+                quiz_master_operations()
 
-            quiz.add_question(question_id, question, options, correct_option)
-            print("Question added successfully!")
+            elif choice == '2':
+                quiz.view_questions()
 
-        elif choice == '2':
-            quiz.view_questions()
+            elif choice == '3':
+                question_id = get_user_input("Enter question ID to delete: ", is_valid_integer)
+                confirmation = get_user_input("Are you sure you want to delete this question? (Y/N): ", is_valid_confirmation)
 
-        elif choice == '3':
-            question_id = get_user_input("Enter question ID to delete: ", is_valid_integer)
-            confirmation = get_user_input("Are you sure you want to delete this question? (Y/N): ", is_valid_confirmation)
+                if confirmation == 'y':
+                    if quiz.delete_question(question_id):
+                        print("Question deleted successfully!")
+                    else:
+                        print("Question ID not found.")
 
-            if confirmation == 'y':
-                if quiz.delete_question(question_id):
-                    print("Question deleted successfully!")
-                else:
-                    print("Question ID not found.")
+            elif choice == '4':
+                print("Exiting the Quiz Game. Thank you!")
+                break
 
-        elif choice == '4':
-            print("Exiting the Quiz Game. Thank you!")
-            break
+            else:
+                print("Invalid choice. Please enter a valid option.")
 
-        else:
-            print("Invalid choice. Please enter a valid option.")
+    elif role == '2':
+        quiz_cracker_operations()
 
-    # Additional logic for logging and further processing can be added here.
+    else:
+        print("Invalid input. Please enter 1 or 2 for your role.")
