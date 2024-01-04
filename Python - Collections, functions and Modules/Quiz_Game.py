@@ -7,7 +7,7 @@ def display_menu():
     print("2. Quiz Cracker")
     print("3. Exit")
 
-def quiz_cracker_operations(quiz_operations):
+def quiz_cracker(crud):
     while True:
         print("===== Quiz Player Menu =====")
         print("1. Play Quiz")
@@ -17,11 +17,11 @@ def quiz_cracker_operations(quiz_operations):
 
         if choice == 1:
             # Play game
-            if not quiz_operations.data:
+            if not crud.data:
                 print("No Questions Available")
                 exit()
             else:
-                for question_id, question_data in quiz_operations.data.items():
+                for question_id, question_data in crud.data.items():
                     print(f"Question: {question_data['question']}")
                     print("Options:")
                     for i in range(len(question_data['options'])):
@@ -51,7 +51,7 @@ def quiz_cracker_operations(quiz_operations):
         else:
             print("Invalid choice. Please enter a valid option.")
 
-def quiz_master_operations(quiz_operations):
+def quiz_master(crud):
     while True:
         print("===== Quiz Master Menu =====")
         print("1. Add Question")
@@ -64,18 +64,20 @@ def quiz_master_operations(quiz_operations):
         if master_choice == 1:
             # Add a new question
             question = input("Enter the question: ")
-            options = [input(f"Enter option {chr(ord('A') + i)}: ") for i in range(4)]
+            options = []
+            for i in range(4):
+                input(f"Enter option {chr(ord('A') + i)}: ") 
             correct_option = int(input("Enter correct option number (1 to 4): "))
 
-            quiz_operations.add(question, options, correct_option)
+            crud.add(question, options, correct_option)
             print("Question added successfully!")
 
         elif master_choice == 2:
-            quiz_operations.view()
+            crud.view()
 
         elif master_choice == 3:
             question_id = int(input("Enter question ID to delete: "))
-            if quiz_operations.delete(question_id):
+            if crud.delete(question_id):
                 print("Question deleted successfully!")
             else:
                 print("Question ID not found.")
@@ -86,9 +88,9 @@ def quiz_master_operations(quiz_operations):
 
         else:
             print("Invalid choice. Please enter a valid option.")
-2
+
 def main():
-    quiz_operations = QuizOperations()
+    crud = QuizOperations()
 
     while True:
         print("======   WELCOME TO TOPS QUIZ  ======")
@@ -97,10 +99,10 @@ def main():
         role = int(input("Enter your role: "))
 
         if role == 1:
-            quiz_master_operations(quiz_operations)
+            quiz_master(crud)
 
         elif role == 2:
-            quiz_cracker_operations(quiz_operations)
+            quiz_cracker(crud)
 
         elif role == 3:
             print("Exiting the Quiz Game. Thank you!")

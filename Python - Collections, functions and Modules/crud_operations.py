@@ -17,11 +17,11 @@ class QuizOperations:
             print("No questions available.")
             exit()
         else:
-            for question_id, data in self.data.items():
-                print(f"ID: {question_id}, Question: {data['question']}")
+            for question_id, data_value in self.data.items():
+                print(f"ID: {question_id}, Question: {data_value['question']}")
                 print("Options:")
-                for i in range(len(data['options'])):
-                    print(f"{chr(ord('A') + i)}. {data['options'][i]}")
+                for i in range(len(data_value['options'])):
+                    print(f"{chr(ord('A') + i)}. {data_value['options'][i]}")
                     
     def delete(self, question_id):
         if question_id in self.data:
