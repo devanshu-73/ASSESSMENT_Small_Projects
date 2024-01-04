@@ -15,20 +15,20 @@ def quiz_master(crud):
         print("3. Delete Question")
         print("4. Exit")
 
-        master_choice = int(input("Enter your choice: "))
+        ch = int(input("Enter your choice: "))
 
-        if master_choice == 1:
+        if ch == 1:
             crud.add()
             print("Question added successfully!")
 
-        elif master_choice == 2:
+        elif ch == 2:
             crud.view()
 
-        elif master_choice == 3:
+        elif ch == 3:
             id_key = int(input("Enter question ID to delete: "))
             crud.delete(id_key)
 
-        elif master_choice == 4:
+        elif ch == 4:
             print("Exiting the Quiz Game. Thank you!")
             break
 
@@ -41,9 +41,9 @@ def quiz_cracker(crud):
         print("1. Play Quiz")
         print("2. Exit")
 
-        choice = int(input("Enter your choice: "))
+        ch = int(input("Enter your choice: "))
 
-        if choice == 1:
+        if ch == 1:
             # Play game
             if not crud.data:
                 print("No Questions Available")
@@ -52,28 +52,21 @@ def quiz_cracker(crud):
                 for id_key, data_value in crud.data.items():
                     print(f"Question: {data_value['question']}")
                     print("Options:")
+                    
                     for i in range(len(data_value['options'])):
                         print(f"{chr(ord('A') + i)}. {data_value['options'][i]}")
 
-                    while True:
-                        user_answer = input("Enter your answer (A, B, C, or D): ").upper()
-
-                        if user_answer in ['A', 'B', 'C', 'D']:
-                            break
-                        else:
-                            print("Invalid input. Please enter A, B, C, or D.")
-
-                    correct_option = chr(ord('A') + data_value['correct_option'] - 1)
-
-                    if user_answer == correct_option:
+                    user_answer = input("Enter your answer : ").upper() #print("Values :",data_value)
+                    
+                    if user_answer == data_value['correct_option']:
                         print("Correct! Well done!")
                     else:
                  
-                        print(f"Wrong! The correct answer is {correct_option}.")
+                        print(f"Wrong! The correct answer is {data_value['correct_option']}.")
 
                 break
 
-        elif choice == 2:
+        elif ch == 2:
             break
 
         else:

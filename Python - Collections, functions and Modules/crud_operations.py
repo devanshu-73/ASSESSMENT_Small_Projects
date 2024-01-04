@@ -14,7 +14,7 @@ class QuizOperations:
         for i in range(4):
             options.append(input(f"Enter option {chr(ord('A') + i)}: ")) 
             
-        correct_option = int(input("Enter correct option number (1 to 4): "))
+        correct_option = input("Enter Correct Answer: ")
 
         self.data[id_key] = {
             'question': question,
