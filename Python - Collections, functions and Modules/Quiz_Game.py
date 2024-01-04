@@ -86,7 +86,7 @@ def quiz_master_operations(quiz_operations):
 
         else:
             print("Invalid choice. Please enter a valid option.")
-
+2
 def main():
     quiz_operations = QuizOperations()
 
