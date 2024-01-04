@@ -23,7 +23,7 @@ class QuizOperations:
         }
 
     def view(self):
-        #View Questions
+        # View Questions
         if not self.data:
             print("No questions available.")
             exit()
