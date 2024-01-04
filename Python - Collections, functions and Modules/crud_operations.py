@@ -4,9 +4,18 @@ class QuizOperations:
     def __init__(self):
         self.data = {}
 
-    def add(self, question, options, correct_option):
-        question_id = len(self.data) + 1
-        self.data[question_id] = {
+    def add(self):
+        # Add a new question
+        id_key = len(self.data) + 1
+        options = []
+        question = input("Enter the question: ")
+        
+        for i in range(4):
+            options.append(input(f"Enter option {chr(ord('A') + i)}: ")) 
+            
+        correct_option = int(input("Enter correct option number (1 to 4): "))
+
+        self.data[id_key] = {
             'question': question,
             'options': options,
             'correct_option': correct_option
@@ -17,16 +26,15 @@ class QuizOperations:
             print("No questions available.")
             exit()
         else:
-            for question_id, data_value in self.data.items():
-                print(f"ID: {question_id}, Question: {data_value['question']}")
+            for id_key, data_value in self.data.items():
+                print(f"ID: {id_key}, Question: {data_value['question']}")
                 print("Options:")
                 for i in range(len(data_value['options'])):
                     print(f"{chr(ord('A') + i)}. {data_value['options'][i]}")
                     
-    def delete(self, question_id):
-        if question_id in self.data:
-            del self.data[question_id]
-            return True
+    def delete(self, id_key):
+        if id_key in self.data:
+            del self.data[id_key]
+            print("Question deleted successfully!")
         else:
-            return False
-
+            print("Question ID not found or U entered Wrong input.")
