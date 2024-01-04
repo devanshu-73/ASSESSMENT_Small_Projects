@@ -4,10 +4,10 @@ from crud_operations import QuizOperations
 def display_menu():
     print("\n===== Quiz Game Menu =====")
     print("1. Quiz Master")
-    print("2. Quiz Player")
+    print("2. Quiz Cracker")
     print("3. Exit")
 
-def quiz_player_operations(quiz_operations):
+def quiz_cracker_operations(quiz_operations):
     while True:
         print("===== Quiz Player Menu =====")
         print("1. Play Quiz")
@@ -17,24 +17,33 @@ def quiz_player_operations(quiz_operations):
 
         if choice == 1:
             # Play game
-            if not quiz_operations.quiz_data:
+            if not quiz_operations.data:
                 print("No Questions Available")
+                exit()
             else:
-                for question_id, question_data in quiz_operations.quiz_data.items():
-                    print(f"\nQuestion: {question_data['question']}")
+                for question_id, question_data in quiz_operations.data.items():
+                    print(f"Question: {question_data['question']}")
                     print("Options:")
                     for i in range(len(question_data['options'])):
                         print(f"{chr(ord('A') + i)}. {question_data['options'][i]}")
 
-                    user_answer = input("Enter your answer (A, B, C, or D): ").upper()
+                    while True:
+                        user_answer = input("Enter your answer (A, B, C, or D): ").upper()
+
+                        if user_answer in ['A', 'B', 'C', 'D']:
+                            break
+                        else:
+                            print("Invalid input. Please enter A, B, C, or D.")
+
                     correct_option = chr(ord('A') + question_data['correct_option'] - 1)
 
                     if user_answer == correct_option:
                         print("Correct! Well done!")
                     else:
+                 
                         print(f"Wrong! The correct answer is {correct_option}.")
 
-                break  # Break the loop after playing the game once
+                break
 
         elif choice == 2:
             break
@@ -58,15 +67,15 @@ def quiz_master_operations(quiz_operations):
             options = [input(f"Enter option {chr(ord('A') + i)}: ") for i in range(4)]
             correct_option = int(input("Enter correct option number (1 to 4): "))
 
-            quiz_operations.add_question(question, options, correct_option)
+            quiz_operations.add(question, options, correct_option)
             print("Question added successfully!")
 
         elif master_choice == 2:
-            quiz_operations.view_questions()
+            quiz_operations.view()
 
         elif master_choice == 3:
             question_id = int(input("Enter question ID to delete: "))
-            if quiz_operations.delete_question(question_id):
+            if quiz_operations.delete(question_id):
                 print("Question deleted successfully!")
             else:
                 print("Question ID not found.")
@@ -82,7 +91,7 @@ def main():
     quiz_operations = QuizOperations()
 
     while True:
-        print("======   WELCOME TO QUIZ MANIA   ======")
+        print("======   WELCOME TO TOPS QUIZ  ======")
 
         display_menu()
         role = int(input("Enter your role: "))
@@ -91,7 +100,7 @@ def main():
             quiz_master_operations(quiz_operations)
 
         elif role == 2:
-            quiz_player_operations(quiz_operations)
+            quiz_cracker_operations(quiz_operations)
 
         elif role == 3:
             print("Exiting the Quiz Game. Thank you!")
