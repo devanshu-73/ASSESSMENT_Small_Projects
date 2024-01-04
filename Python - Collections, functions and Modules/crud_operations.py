@@ -2,10 +2,11 @@
 
 class QuizOperations:
     def __init__(self):
+        #Auto Create Blank Dict
         self.data = {}
 
     def add(self):
-        # Add a new question
+        # Add New Question
         id_key = len(self.data) + 1
         options = []
         question = input("Enter the question: ")
@@ -22,6 +23,7 @@ class QuizOperations:
         }
 
     def view(self):
+        #View Questions
         if not self.data:
             print("No questions available.")
             exit()
@@ -33,6 +35,7 @@ class QuizOperations:
                     print(f"{chr(ord('A') + i)}. {data_value['options'][i]}")
                     
     def delete(self, id_key):
+        # Delete Question
         if id_key in self.data:
             del self.data[id_key]
             print("Question deleted successfully!")
