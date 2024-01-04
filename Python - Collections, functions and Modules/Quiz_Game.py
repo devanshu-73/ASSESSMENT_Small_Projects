@@ -37,7 +37,7 @@ def quiz_master(crud):
 
 def quiz_cracker(crud):
     while True:
-        print("===== Quiz Player Menu =====")
+        print("===== Quiz Cracker Menu =====")
         print("1. Play Quiz")
         print("2. Exit")
 
@@ -55,15 +55,13 @@ def quiz_cracker(crud):
                     
                     for i in range(len(data_value['options'])):
                         print(f"{chr(ord('A') + i)}. {data_value['options'][i]}")
-
-                    user_answer = input("Enter your answer : ").upper() #print("Values :",data_value)
+                        
+                    user_answer = input("Enter your answer : ") #print("Values :",data_value)
                     
                     if user_answer == data_value['correct_option']:
                         print("Correct! Well done!")
                     else:
-                 
                         print(f"Wrong! The correct answer is {data_value['correct_option']}.")
-
                 break
 
         elif ch == 2:
