@@ -7,7 +7,7 @@ class Database:
             user="root",
             password="",
             database="hotel_management",
-            port=3306  # default port for MySQL
+            port=3306
         )
         self.cursor = self.mydb.cursor()
 
