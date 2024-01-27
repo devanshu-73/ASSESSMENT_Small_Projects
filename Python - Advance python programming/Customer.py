@@ -1,3 +1,4 @@
+# Customer.py
 class Customer:
     def __init__(self, name, contact, email, gender, city, state):
         self.name = name

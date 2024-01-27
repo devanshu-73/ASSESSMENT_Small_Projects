@@ -1,3 +1,5 @@
+# DB_Connection.py
+
 import pymysql
 
 class Database:
@@ -18,3 +20,7 @@ class Database:
     def fetch_data(self, query, values=None):
         self.cursor.execute(query, values)
         return self.cursor.fetchall()
+
+    def close_connection(self):
+        self.cursor.close()
+        self.mydb.close()

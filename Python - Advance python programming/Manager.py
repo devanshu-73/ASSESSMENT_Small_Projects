@@ -1,3 +1,4 @@
+# Manager.py
 from DB_Connection import Database
 from Customer import Customer
 
@@ -20,14 +21,17 @@ class HotelManager:
         """
         self.db.execute_query(query)
         print("Customers table created or already exists.")
-   
+
     def add_customer(self, name, contact, email, gender, city, state):
+        
         customer = Customer(name, contact, email, gender, city, state)
+        
+        # Insert customer_details into the database
+        
         query = "INSERT INTO customers (name, contact, email, gender, city, state) VALUES (%s, %s, %s, %s, %s, %s)"
         values = (name, contact, email, gender, city, state)
         self.db.execute_query(query, values)
         print("Customer added successfully!")
-
 
     def display_customers(self):
         query = "SELECT * FROM customers"
