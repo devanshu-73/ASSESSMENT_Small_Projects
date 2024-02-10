@@ -27,17 +27,19 @@
   <body>
     <!-- ================================================================================================================= -->
     <!-- Section-1 -->
-    <section id="sec-1" class>
-      <div>
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasScrolling"
-          aria-controls="offcanvasScrolling"
-        >
-          <i class="fa-solid fa-bars"></i>
-        </button>
+    <section id="sec-1" class="sec-1">
+      <div class="container">
+        <div class="d-flex justify-content-end align-items-center pt-5">
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
       </div>
     </section>
     <!-- Section-1 -->
@@ -56,29 +58,71 @@
     <!-- Section-4 -->
 
     <!-- ================================================================================================================= -->
+   
     <!-- SideBar_Html -->
 
     <div
-      class="offcanvas offcanvas-start"
+      class="offcanvas offcanvas-start border border-0 bg-dark bg-opacity-75 text-dark"
       data-bs-scroll="true"
       data-bs-backdrop="false"
       tabindex="-1"
       id="offcanvasScrolling"
       aria-labelledby="offcanvasScrollingLabel"
     >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
-          Offcanvas with body scrolling
-        </h5>
+      <div
+        class="offcanvas-header d-flex justify-content-end align-items-center"
+      >
         <button
           type="button"
-          class="btn-close"
+          class="btn-close bg-white"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         ></button>
       </div>
-      <div class="offcanvas-body">
-        <p>Try scrolling the rest of the page to see this option in action.</p>
+      <div
+        class="offcanvas-body d-flex flex-column justify-content-evenly  align-items-center"
+      >
+        <div class="border border-1 border-white text-white p-3 rounded">
+          <h1>Dream Pulse</h1>
+        </div>
+        <div class="list-group">
+          <button
+            type="button"
+            class="list-group-item list-group-item-action bg-transparent text-white border border-0"
+          >
+            INTRO
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action bg-transparent text-white border border-0"
+          >
+            ABOUT
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action bg-transparent text-white border border-0"
+          >
+            WORK
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action bg-transparent text-white border border-0"
+          >
+            CLIENTS
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action bg-transparent text-white border border-0"
+          >
+            LET'S TALK
+          </button>
+        </div>
+        <div style="width: 100%;" class="d-flex justify-content-evenly align-items-center">
+          <i style="color:white" class="fa-brands fa-2xl fa-instagram"></i>
+          <i style="color:white" class="fa-brands fa-2xl fa-facebook" ></i>
+          <i style="color:white" class="fa-brands fa-2xl fa-whatsapp"></i>
+          <i style="color:white" class="fa-brands fa-2xl fa-twitter"></i>
+        </div>
       </div>
     </div>
     <!-- SideBar_Html -->

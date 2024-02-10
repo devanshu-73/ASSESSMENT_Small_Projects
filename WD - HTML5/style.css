@@ -1,7 +1,18 @@
-#sec-1 {
+
+#sec-1,#sec-2,#sec-3,#sec-4 {
   height: 100vh;
-  background: url(./img/homepage.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+#sec-1 {
+  position: relative;
+}
+
+.sec-1::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(./img/homepage.jpg) center center / cover no-repeat;
+  filter: blur(1.2px);
+  z-index: -1;
 }
