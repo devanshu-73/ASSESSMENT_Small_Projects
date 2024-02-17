@@ -3,6 +3,9 @@ from rest_framework.response import Response
 from .models import Comment
 from .serializers import CommentSerializer
 
+
+
+
 @api_view(['GET', 'POST'])
 def comment_list(request):
     if request.method == 'GET':
