@@ -2,10 +2,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Comment
 from .serializers import CommentSerializer
+from django.shortcuts import render
 
+def index(request):
+        comments = Comment.objects.all()
+        return render(request,'index.html',{'comments':comments})
 
-
-
+# ===========================================================================
+# Api For All Comments Data
 @api_view(['GET', 'POST'])
 def comment_list(request):
     if request.method == 'GET':
@@ -19,7 +23,9 @@ def comment_list(request):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+# ===========================================================================
 
+# Api For One Comment Data
 @api_view(['GET', 'PUT', 'DELETE'])
 def comment_detail(request, pk):
     try:
