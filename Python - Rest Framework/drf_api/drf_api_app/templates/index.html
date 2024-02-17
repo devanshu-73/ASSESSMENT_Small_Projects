@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api</title>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    {% comment %} {% for i in rangecomment.id %} {% endcomment %}
-    {{comments}}
-    {% comment %} {% endfor %} {% endcomment %}
+
+<div class="container mt-3">
+  <h2>Comments Data</h2>
+  <div class="d-flex">
+  {% for i in comments %}
+    <div class="card" style="width:400px">
+        <div class="card-body">
+            <h4 class="card-title">{{i.author}}</h4>
+            <p class="card-text">{{i.content}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>  
+</div>
+
 </body>
 </html>
-
-{% comment %} @api_view(['GET', 'POST','PUT','DELETE'])
-def studentgetdata(request):
-    try:
-        if request.method == 'GET':
-            sdata = Student.objects.all()
-            serializer = StudentSerializer(sdata, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        elif request.method == 'POST':  
-            serializer = StudentSerializer(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)  # Method Not Allowed for POST
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-"""
-Django ORM 
-
-get() : fetch data from model and return an object but only single records 
-    if there are multiple records found with given condition it will thrown an exception 
-
-""" {% endcomment %}
