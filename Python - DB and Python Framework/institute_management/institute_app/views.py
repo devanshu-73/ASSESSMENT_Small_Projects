@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import People
+from .models import *
+import random
+
 
 def index(request):
     if 'username' in request.session:
@@ -40,3 +42,43 @@ def logout(request):
     if "username" in request.session:
         del request.session['username']
     return redirect('index')
+
+def forgotpassword(request):
+   if request.POST:
+      try:
+         user=People.objects.get(email=request.POST.get('email'))
+         print("==========>>>> User",user)
+         
+         # ---------- step-2: Verify the otp -----------
+         otp=request.POST.get('otp')
+         print("==========>>>> OTP",otp)
+         if otp is not None:
+            # on correct OTP send to changepassword html
+            if otp==user.otp and otp!="":
+               return render(request, 'institute_app/changepassword.html',{'email':user.email})
+            else:
+            # on incorrect OTP
+               msg="Incorrect OTP"
+               return render(request, 'institute_app/forgotpassword.html',{'isOTP':True,'email':user.email,'msg':msg})
+         # ----------------------------------------------
+         
+         # --------- step-1: otp ---------------   
+         # generating otp
+         user.otp=random.randint(1111,9999)
+         user.save()
+         
+         # sending otp to the user through the mail
+         mymailfunction("Forgot Password",'mailtemplate',user.email,{'email':user.email,'password':user.otp})
+         # on valid email the OTP field will be unlocked
+         return render(request, 'institute_app/forgotpassword.html',{'isOTP':True,'email':user.email})
+         # -------------------------------------
+         
+      except Exception as e:
+         # if email is invalid
+         print("=========>>> Error :",e)
+         msg="Email is not Registered"
+         return render(request, 'app/forgotpassword.html',{'msg':msg})
+      
+   return render(request, 'app/forgotpassword.html')
+
+# Note: user.email is given on almost every render to keep the view connected
