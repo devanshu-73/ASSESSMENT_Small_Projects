@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
 import random
-
+from .utils import *
 
 def index(request):
     if 'username' in request.session:
@@ -77,8 +77,8 @@ def forgotpassword(request):
          # if email is invalid
          print("=========>>> Error :",e)
          msg="Email is not Registered"
-         return render(request, 'app/forgotpassword.html',{'msg':msg})
+         return render(request, 'institute_app/forgotpassword.html',{'msg':msg})
       
-   return render(request, 'app/forgotpassword.html')
+   return render(request, 'institute_app/forgotpassword.html')
 
 # Note: user.email is given on almost every render to keep the view connected
