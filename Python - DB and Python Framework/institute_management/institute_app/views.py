@@ -3,20 +3,7 @@ from django.contrib import messages
 from .models import *
 import random
 from .utils import *
-
-def index(request):
-    if 'username' in request.session:
-        # User is logged in, render home page
-        username = request.session['username']
-        try:
-            user = People.objects.get(username=username)
-            context = {"user": user}
-            return render(request, 'institute_app/index.html', context)
-        except People.DoesNotExist:
-            # If session username doesn't match any user, clear the session and render login
-            del request.session['username']
-    # User is not logged in, render login page
-    return render(request, "institute_app/login.html")
+from django.shortcuts import render, get_object_or_404
 
 def login(request):
     if 'username' in request.session:
@@ -42,6 +29,66 @@ def logout(request):
     if "username" in request.session:
         del request.session['username']
     return redirect('index')
+
+def register(request):
+    return render(request,'institute_app/person.html')
+
+def add_person(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        dob = request.POST.get('dob')
+        date_of_joining = request.POST.get('doj')
+        address = request.POST.get('address')
+        person_type = request.POST.get('person_type')  
+
+        new_person = People(username=username, password=password, dob=dob, date_of_joining=date_of_joining, address=address)
+        new_person.save()
+
+        if person_type == 'teacher':
+            compensation = request.POST.get('compensation')
+            teacher = Teacher(person=new_person, compensation=compensation)
+            teacher.save()
+        elif person_type == 'student':
+            # Get the last roll number used for students
+            last_student = Student.objects.last()
+            if last_student:
+                last_roll_number = int(last_student.roll_number)
+            else:
+                last_roll_number = 0
+                
+            # Increment the last roll number by 1 for the new student
+            roll_number = str(last_roll_number + 1)
+            
+            student = Student(person=new_person, roll_number=roll_number)
+            student.save()
+
+        messages.success(request, 'Person added successfully!')
+        return redirect('index')  
+
+    return render(request, 'institute_app/add_person.html')
+
+def student_detail_view(request, student_id):
+    students = Student.objects.filter(id=student_id)
+    if students.exists():
+        student = students.first()
+        return render(request, 'institute_app/student_detail.html', {'student': student})
+    else:
+        return render(request, 'institute_app/student_detail_view.html')
+
+def index(request):
+    if 'username' in request.session:
+        # User is logged in, render home page
+        username = request.session['username']
+        try:
+            user = People.objects.get(username=username)
+            context = {"user": user}
+            return render(request, 'institute_app/index.html', context)
+        except People.DoesNotExist:
+            # If session username doesn't match any user, clear the session and render login
+            del request.session['username']
+    # User is not logged in, render login page
+    return render(request, "institute_app/login.html")
 
 def forgotpassword(request):
    if request.POST:

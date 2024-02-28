@@ -1,0 +1,95 @@
+{% extends 'institute_app/index.html' %} {% block content %} {% load static %}
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mb-4 mx-4">
+          <div class="card-body p-4">
+            <form action="{% url 'add_person' %}" method="post">
+              {% csrf_token %}
+              <h1>Institute Management</h1>
+              <p class="text-medium-emphasis">
+                Add Person To Institute Management
+              </p>
+              <div class="input-group mb-3">
+                <span class="input-group-text"> Name </span>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text"> PWD </span>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="person_type"
+                  >Person Type</label
+                >
+                <select class="form-select" id="person_type" name="person_type">
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+
+              <div
+                class="input-group mb-3"
+                id="roll_number_field"
+                style="display: none"
+              >
+                <div>
+                  <span class="input-group-text"> Roll No </span>
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="roll_number"
+                    placeholder="Roll Number"
+                  />
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text"> DOB </span>
+                <input
+                  class="form-control"
+                  name="dob"
+                  type="date"
+                  placeholder="Date Of Birth"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text"> DOJ </span>
+                <input
+                  class="form-control"
+                  type="date"
+                  name="doj"
+                  placeholder="Date Of Joining"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text"> address </span>
+                <textarea
+                  name="address"
+                  placeholder="Address"
+                  cols="56"
+                  rows="5"
+                ></textarea>
+              </div>
+              <button class="btn btn-block btn-success" type="submit">
+                Create
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

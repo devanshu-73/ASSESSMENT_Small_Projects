@@ -8,7 +8,9 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('forgotpassword/', views.forgotpassword, name='forgotpassword'),
-    path('changepassword/', views.changepassword, name='changepassword'),
+    path('add_person/', views.add_person, name='add_person'),
+    path('student/<int:student_id>/', views.student_detail_view, name='student_detail_view'),
+    # path('changepassword/', views.changepassword, name='changepassword'),
 ]
 
 

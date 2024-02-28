@@ -11,19 +11,18 @@ class People(models.Model):
         return self.username
 
 class Teacher(models.Model):
-    person = models.ForeignKey(People, on_delete=models.CASCADE)
+    person = models.OneToOneField(People, on_delete=models.CASCADE)
     compensation = models.CharField(max_length=10)
 
     def __str__(self):
         return f"{self.person.username} (Teacher)"
 
 class Student(models.Model):
-    person = models.ForeignKey(People, on_delete=models.CASCADE)
+    person = models.OneToOneField(People, on_delete=models.CASCADE)
     roll_number = models.CharField(max_length=20)
 
     def __str__(self):
         return f"{self.person.username} (Student)"
-
 class Club(models.Model):
     club_name = models.CharField(max_length=100)
 

@@ -118,7 +118,7 @@
 
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{% url 'index' %}">
             <svg class="nav-icon">
               <use
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
@@ -128,7 +128,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{% url 'add_person' %}">
             <svg class="nav-icon">
               <use
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
@@ -138,7 +138,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{% url 'student_detail_view' %}">
             <svg class="nav-icon">
               <use
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
@@ -185,6 +185,20 @@
       ></button>
     </div>
     {% block content %} {% endblock %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var personTypeSelect = document.getElementById('person_type');
+          var rollNumberField = document.getElementById('roll_number_field');
+      
+          personTypeSelect.addEventListener('change', function() {
+              if (personTypeSelect.value === 'student') {
+                  rollNumberField.style.display = 'block';
+              } else {
+                  rollNumberField.style.display = 'none';
+              }
+          });
+      });
+      </script>
     <!-- CoreUI and necessary plugins-->
     <script src="{% static 'vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
     <script src="{% static 'vendors/simplebar/js/simplebar.min.js' %}"></script>
