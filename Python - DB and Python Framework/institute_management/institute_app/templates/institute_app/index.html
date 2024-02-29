@@ -71,14 +71,7 @@
             <div class="dropdown-header bg-light py-2">
               <div class="fw-semibold">Settings</div>
             </div>
-            <a class="dropdown-item" href="#">
-              <svg class="icon me-2">
-                <use
-                  xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-user' %}"
-                ></use>
-              </svg>
-              Profile</a
-            ><a class="dropdown-item" href="{% url 'logout' %}">
+            <a class="dropdown-item" href="{% url 'logout' %}">
               <svg class="icon me-2">
                 <use
                   xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-account-logout' %}"
@@ -112,7 +105,7 @@
             >
               <div>
                 <div class="fs-4 fw-semibold">
-                  200
+                  {{student_count}}
                   <span class="fs-6 fw-normal">
                     <svg class="icon">
                       <use
@@ -157,7 +150,7 @@
             >
               <div>
                 <div class="fs-4 fw-semibold">
-                  10
+                  {{teacher_count}}
                   <span class="fs-6 fw-normal">
                     <svg class="icon">
                       <use
@@ -202,7 +195,7 @@
             >
               <div>
                 <div class="fs-4 fw-semibold">
-                  10
+                  {{club_count}}
                   <span class="fs-6 fw-normal">
                     <svg class="icon">
                       <use
@@ -247,7 +240,7 @@
             >
               <div>
                 <div class="fs-4 fw-semibold">
-                  1000
+                  {{book_count}}
                   <span class="fs-6 fw-normal">
                     <svg class="icon">
                       <use
@@ -346,13 +339,9 @@
     </div>
   </div>
   <footer class="footer">
-    <div>
-      Copy Right © 2024 
-    </div>
+    <div>Copy Right © 2024</div>
     <div class="ms-auto">
-      Powered by&nbsp;<a href="#"
-        >Devanshu Chauhan Company
-      </a>
+      Powered by&nbsp;<a href="#">Devanshu Chauhan Company </a>
     </div>
   </footer>
 </div>

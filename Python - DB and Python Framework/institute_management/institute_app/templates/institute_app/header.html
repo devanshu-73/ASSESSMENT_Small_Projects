@@ -150,21 +150,21 @@
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
               ></use>
             </svg>
-            Students</a
+            Manage Students</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{% url 'teacher_detail' %}">
             <svg class="nav-icon">
               <use
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
               ></use>
             </svg>
-            Teachers</a
+            Manage Teachers</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{% url 'club_detail' %}">
             <svg class="nav-icon">
               <use
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
@@ -174,7 +174,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{% url 'book_detail' %}">
             <svg class="nav-icon">
               <use
                 xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"
@@ -195,12 +195,18 @@
       document.addEventListener("DOMContentLoaded", function () {
         let personTypeSelect = document.getElementById("person_type");
         let rollNumberField = document.getElementById("roll_number_field");
+        let comp_Field = document.getElementById("comp_field");
 
         personTypeSelect.addEventListener("change", function () {
           if (personTypeSelect.value === "student") {
             rollNumberField.style.display = "block";
+            comp_Field.style.display = "none";
+          } else if (personTypeSelect.value === "teacher") {
+            comp_Field.style.display = "block";
+            rollNumberField.style.display = "none";
           } else {
             rollNumberField.style.display = "none";
+            comp_Field.style.display = "none";
           }
         });
       });

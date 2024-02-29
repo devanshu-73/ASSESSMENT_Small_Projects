@@ -31,9 +31,6 @@ def logout(request):
         del request.session['username']
     return redirect('index')
 
-def register(request):
-    return render(request,'institute_app/person.html')
-
 def add_person(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -48,19 +45,12 @@ def add_person(request):
 
         if person_type == 'teacher':
             compensation = request.POST.get('compensation')
+            compensation = int(compensation)
             teacher = Teacher(person=new_person, compensation=compensation)
             teacher.save()
         elif person_type == 'student':
-            # Get the last roll number used for students
-            last_student = Student.objects.last()
-            if last_student:
-                last_roll_number = int(last_student.roll_number)
-            else:
-                last_roll_number = 0
-                
-            # Increment the last roll number by 1 for the new student
-            roll_number = str(last_roll_number + 1)
-            
+            roll_number = request.POST.get('roll_number')
+            roll_number = int(roll_number)
             student = Student(person=new_person, roll_number=roll_number)
             student.save()
 
@@ -77,13 +67,47 @@ def student_detail_view(request):
     else:
         return render(request, 'institute_app/index.html')
 
+def teacher_detail_view(request):
+    teacher = Teacher.objects.all()
+    if teacher.exists():
+        teachers = Teacher.objects.all()
+        return render(request, 'institute_app/teacher_detail.html', {'teachers': teachers})
+    else:
+        return render(request, 'institute_app/index.html')
+    
+def club_detail_view(request):
+    if request.method == 'POST':
+        club_name = request.POST.get('club_name')
+        new_club = Club.objects.create(club_name=club_name,)
+        return redirect('club_detail')  # Redirect to the same page after adding a new club
+    clubs = Club.objects.all()
+    return render(request, 'institute_app/club_detail.html', {'clubs': clubs})
+    
+def book_detail_view(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        new_book = Book.objects.create(title=title,author=author)
+        return redirect('book_detail')  # Redirect to the same page after adding a new club
+    books = Book.objects.all()
+    return render(request, 'institute_app/book_detail.html', {'books': books})
+    
 def index(request):
     if 'username' in request.session:
         # User is logged in, render home page
         username = request.session['username']
         try:
             user = People.objects.get(username=username)
-            context = {"user": user}
+            student_count = Student.objects.count() 
+            teacher_count = Teacher.objects.count() 
+            club_count = Club.objects.count() 
+            book_count = Book.objects.count() 
+            context = {"user": user,
+                       "student_count":student_count,
+                       "teacher_count":teacher_count,
+                       "club_count":club_count,
+                       "book_count":book_count
+                       }
             return render(request, 'institute_app/index.html', context)
         except People.DoesNotExist:
             # If session username doesn't match any user, clear the session and render login

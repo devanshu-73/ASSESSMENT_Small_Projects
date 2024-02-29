@@ -1,0 +1,55 @@
+{% extends "institute_app/header.html" %} {% load static %} {% block content %}
+<div
+  class="wrapper bg-light min-vh-100 d-flex justify-content-center align-items-start"
+>
+  <div class="my-3">
+    <div
+      class="bg-white border border-2 rounded d-flex flex-column justify-center align-items-center"
+    >
+    <h1 class='text-center my-3'>Add Book</h1>
+      <form method="post" class="px-5" action='{% url "book_detail" %}'>
+        {% csrf_token %}
+        <label for="book">Book Name:</label>
+        <input type="text" id="book" name="title" required />
+        <label for="author">Author Name:</label>
+        <input type="text" id="author" name="author" required />
+        <button class="btn btn-block btn-dark" type="submit">Add Book</button>
+      </form>
+
+      <!-- Table to display Book data -->
+      <table class="table my-3 text-center table-striped table-bordered">
+        <h2 class='my-2'>Book Details</h2>
+        <thead>
+          <tr>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+          <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>
+              <div>
+                <button class="btn btn-block btn-success" type="btn">
+                  Edit
+                </button>
+                <button class="btn btn-block btn-danger" type="btn">
+                  delete
+                </button>
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2">No Books available</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

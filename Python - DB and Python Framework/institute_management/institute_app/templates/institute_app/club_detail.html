@@ -1,0 +1,51 @@
+{% extends "institute_app/header.html" %} {% load static %} {% block content %}
+<div
+  class="wrapper bg-light min-vh-100 d-flex justify-content-center align-items-start"
+>
+  <div class="my-3">
+    <div
+      class="bg-white border border-2 rounded d-flex flex-column justify-center align-items-center"
+    >
+    <h1 class='text-center my-3'>Add Club</h1>
+      <form method="post" class="px-5" action='{% url "club_detail" %}'>
+        {% csrf_token %}
+        <label for="name">Club Name:</label>
+        <input type="text" id="name" name="club_name" required />
+        <button class="btn btn-block btn-dark" type="submit">Add Club</button>
+      </form>
+
+      <!-- Table to display club data -->
+      <table class="table my-3 text-center table-striped table-bordered">
+        <h2 class='my-2'>Club Details</h2>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for club in clubs %}
+          <tr>
+            <td>{{ club.club_name }}</td>
+            <td>
+              <div>
+                <button class="btn btn-block btn-success" type="btn">
+                  Edit
+                </button>
+                <button class="btn btn-block btn-danger" type="btn">
+                  delete
+                </button>
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2">No clubs available</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
