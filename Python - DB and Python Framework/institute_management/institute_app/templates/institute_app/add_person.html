@@ -1,4 +1,4 @@
-{% extends 'institute_app/index.html' %} {% block content %} {% load static %}
+{% extends "institute_app/header.html" %} {% load static %} {% block content %}
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
   <div class="container">
     <div class="row justify-content-center">
@@ -34,6 +34,7 @@
                   >Person Type</label
                 >
                 <select class="form-select" id="person_type" name="person_type">
+                  <option value="" disabled selected>Select Type</option>
                   <option value="teacher">Teacher</option>
                   <option value="student">Student</option>
                 </select>

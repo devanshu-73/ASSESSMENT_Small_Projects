@@ -5,6 +5,7 @@ import random
 from .utils import *
 from django.shortcuts import render, get_object_or_404
 
+
 def login(request):
     if 'username' in request.session:
         return redirect('index')  # Redirect to index if user is already logged in
@@ -68,13 +69,13 @@ def add_person(request):
 
     return render(request, 'institute_app/add_person.html')
 
-def student_detail_view(request, student_id):
-    students = Student.objects.filter(id=student_id)
-    if students.exists():
-        student = students.first()
-        return render(request, 'institute_app/student_detail.html', {'student': student})
+def student_detail_view(request):
+    student = Student.objects.all()
+    if student.exists():
+        students = student.all()
+        return render(request, 'institute_app/student_detail.html', {'students': students})
     else:
-        return render(request, 'institute_app/student_detail_view.html')
+        return render(request, 'institute_app/index.html')
 
 def index(request):
     if 'username' in request.session:

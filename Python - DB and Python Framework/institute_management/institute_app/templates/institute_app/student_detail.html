@@ -1,16 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Detail</title>
-</head>
-<body>
-    <h1>Student Detail</h1>
-    <p><strong>Username:</strong> {{ student.person.username }}</p>
-    <p><strong>Roll Number:</strong> {{ student.roll_number }}</p>
-    <p><strong>Date of Birth:</strong> {{ student.person.dob }}</p>
-    <p><strong>Date of Joining:</strong> {{ student.person.date_of_joining }}</p>
-    <p><strong>Address:</strong> {{ student.person.address }}</p>
-</body>
-</html>
+{% extends "institute_app/header.html" %} {% load static %} {% block content %}
+<div
+  class="wrapper bg-light min-vh-100 d-flex justify-content-center align-items-start"
+>
+  <div class="my-3">
+    <div
+      class="bg-white border border-2 rounded d-flex flex-column justify-center align-items-center"
+    >
+      <h1 class="text-center">Student Detail</h1>
+      <table class="table text-center table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Roll Number</th>
+            <th scope="col">Username</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Date of Joining</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <td>{{ student.roll_number }}</td>
+            <td>{{ student.person.username }}</td>
+            <td>{{ student.person.dob }}</td>
+            <td>{{ student.person.date_of_joining }}</td>
+            <td>{{ student.person.address }}</td>
+            <td>
+              <div>
+                <button class="btn btn-block btn-success" type="btn">
+                Edit
+                </button>
+                <button class="btn btn-block btn-danger" type="btn">
+                    delete
+                  </button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
