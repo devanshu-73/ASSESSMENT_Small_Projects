@@ -29,7 +29,7 @@ def quiz_master(crud):
             crud.delete(id_key)
 
         elif ch == 4:
-            print("Exiting the Quiz Game. Thank you!")
+            print("Exiting the Quiz Game.Thank you!")
             break
 
         else:
