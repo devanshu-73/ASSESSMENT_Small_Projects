@@ -2,7 +2,6 @@
 
 class QuizOperations:
     def __init__(self):
-        #Auto Create Blank Dict
         self.data = {}
 
     def add(self):
